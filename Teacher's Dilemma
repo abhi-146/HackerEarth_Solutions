@@ -1,0 +1,84 @@
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+class DisjointSet
+{
+	int[] rank,parent;
+	int n;
+	public DisjointSet(int n)
+	{
+		rank = new int[n];
+		parent = new int[n];
+		this.n = n;
+		
+		for(int i = 0;i < n;i++)
+		{
+			parent[i] = i;
+			rank[i] = 1;
+		}
+	}
+	int find(int i)
+	{
+		if(parent[i] != i)
+			parent[i] = find(parent[i]);
+	
+	return parent[i];
+	}
+	void union(int x,int y)
+	{
+		int xRoot = find(x);
+		int yRoot = find(y);
+		
+		if(xRoot == yRoot)
+			return;
+		
+		if(rank[xRoot] < rank[yRoot])
+		{
+			parent[xRoot] = yRoot;
+			rank[yRoot]+=rank[xRoot];
+			
+			
+		}
+		else 
+		{
+			parent[yRoot] = xRoot;
+			rank[xRoot]+=rank[yRoot];
+			
+		}
+		
+	}
+
+}
+class TestClass {
+	public static void main(String args[])
+ 	{
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int q = sc.nextInt();
+		DisjointSet ds = new DisjointSet(n + 1);
+		while(q-- > 0) {
+			int a = sc.nextInt();
+			int b = sc.nextInt();
+            if(ds.find(a)!=ds.find(b))
+            ds.union(a,b);
+		}
+        HashSet<Integer> set = new HashSet<Integer>();
+        for(int i = 1;i <= n;i++)
+        {
+            set.add(ds.find(i));
+        }
+        long product = 1;
+        for(int i : set)
+        {
+            product =( product % 1000000007 * (ds.rank[i] % 1000000007)) % 1000000007;
+        }
+        System.out.println(product);
+		sc.close();
+		
+	}
+
+}
