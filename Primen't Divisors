@@ -1,0 +1,39 @@
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		while(t-- > 0)
+		{
+			long n = sc.nextLong();
+			long divisors = 1;
+			long i;
+			long d=1;
+			for( i = 2;i*i<=n;i++)
+			{
+				long count = 0;
+				if(n % i == 0)
+					{
+					   d++;
+					   while(n % i ==0)
+					     {
+						   n =  n/i;
+						   count++;
+					     }
+					}
+					
+				divisors *= count + 1;
+			}
+			if(n > 1)
+			{
+				d++;
+				divisors *= 2;
+				
+			}
+			System.out.println((divisors - d) + 1);
+			
+		}
+		sc.close();
+
+    }
+}
