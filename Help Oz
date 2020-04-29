@@ -1,0 +1,34 @@
+import java.util.*;
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+      		Scanner sc = new Scanner(System.in);
+		int m = sc.nextInt();
+		int arr[] = new int[m];
+		int diff[] = new int[m];
+	    for(int i =0;i<m;i++)
+	    {
+	    	arr[i] = sc.nextInt();
+	    	if(i == 0)
+	    		diff[i] = arr[i];
+	    	else
+	    		diff[i] = Math.abs(arr[i] - arr[i - 1]);
+	    }
+	    int minDiff = Integer.MAX_VALUE;
+	    for(int i = 1;i < m;i++)
+	    {
+	    	minDiff = Math.min(minDiff, diff[i]);
+	    }
+	    for(int i = 2;i <= minDiff;i++)
+	    {
+	    	for(int j = 1;j<m;j++)
+	    	{
+	    		if(diff[j] % i != 0)
+	    			break;
+	    		if(j == m - 1)
+	    			System.out.print(i+" ");
+	    	}
+	    }
+
+		sc.close();
+    }
+}
