@@ -1,0 +1,23 @@
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.math.*;
+class TestClass {
+public static void main(String args[] ) throws Exception 
+{
+
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+String line = br.readLine();
+int T = Integer.parseInt(line);
+long N;
+BigInteger result;
+
+for(int i=0;i<T;i++)
+{
+ N = Long.parseLong(br.readLine());
+ result = BigInteger.valueOf(N);
+ result = result.multiply(result.multiply(BigInteger.valueOf(2)).subtract(BigInteger.valueOf(1)));
+ System.out.println(result.mod(BigInteger.valueOf(1000000007)));
+}
+}
+}
