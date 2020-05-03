@@ -1,0 +1,16 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
+
+
+class TestClass {
+    public static void main(String args[] ) throws Exception {
+        
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String name[] = br.readLine().split(" ");               
+        long n = Long.parseLong(name[0]);
+        long a = Long.parseLong(name[1]);
+        long b = Long.parseLong(name[2]);
+        System.out.println(n - a - b);
+    }
+}
